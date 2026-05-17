@@ -50,7 +50,7 @@
   bottom: -50%;
   width: 200%;
   height: 200%;
-  background: transparent url('https://grainy-gradients.vercel.app/noise.svg') repeat 0 0;
+  background: transparent url('/src/assets/images/noise.svg') repeat 0 0;
   opacity: .05;
   pointer-events: none;
   z-index: 100;

@@ -330,25 +330,29 @@ const ExperienceShowcase = () => {
       title: "Freight Logistics Mastery",
       context: "SME Export",
       description: "Ship faster from Ghana to global markets. Ocean Masters handles door-to-port consolidation and export docs in one workflow, reducing shipping time by up to 22% on UK routes.",
-      tags: ["Accra Textiles Ltd", "18-22% Faster", "Consolidation"]
+      tags: ["Accra Textiles Ltd", "18-22% Faster", "Consolidation"],
+      image: "/src/assets/images/cargo_ship_hero_1778982638392.png"
     },
     {
       title: "Dangerous Goods Protocol",
       context: "Chemicals",
       description: "IATA & IMO certified handling for hazardous cargo. Our specialists prepare MSDS and packaging correctly the first time, maintaining a 100% clearance rate in 2025.",
-      tags: ["PharmaWest Ghana", "100% Compliance", "IMO Certified"]
+      tags: ["PharmaWest Ghana", "100% Compliance", "IMO Certified"],
+      image: "/src/assets/images/shipping_yard_bg_1778982623151.png"
     },
     {
       title: "Port Speed Strategy",
       context: "Clearing & Forwarding",
       description: "Clear your cargo at KIA & Tema Port fast. We save clients thousands in demurrage by filing entries same-day and coordinating inspections proactively.",
-      tags: ["Accra Engineering", "24-48hr Release", "Harbour Logistics"]
+      tags: ["Accra Engineering", "24-48hr Release", "Harbour Logistics"],
+      image: "/src/assets/images/port_harbour_cranes_1778988430081.png"
     },
     {
       title: "Diplomatic Chain of Custody",
       context: "Priority Ops",
       description: "Specialized handling for embassies and AOG parts. Discreet, compliant freight with special exemptions and 12-hour response for aviation operations.",
-      tags: ["Embassy Support", "AOG Response", "Secure Registry"]
+      tags: ["Embassy Support", "AOG Response", "Secure Registry"],
+      image: "/src/assets/images/warehouse_interior_1778988395381.png"
     }
   ];
 
@@ -393,7 +397,7 @@ const ExperienceShowcase = () => {
                   </div>
                   <div className="w-full md:w-2/5 aspect-video md:aspect-[4/5] bg-ocean-950 relative overflow-hidden group border border-white/5">
                      <img 
-                      src={idx % 2 === 0 ? "/src/assets/images/cargo_ship_hero_1778982638392.png" : "/src/assets/images/shipping_yard_bg_1778982623151.png"} 
+                      src={exp.image} 
                       className="w-full h-full object-cover brightness-50 group-hover:scale-105 transition-transform duration-1000 grayscale group-hover:grayscale-0" 
                       alt="Operations visual"
                      />

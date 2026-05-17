@@ -219,7 +219,7 @@ export default function CaseStudies() {
       title: "Port Demurrage Mitigation",
       sector: "Clearing & Forwarding",
       description: "Stalled customs release at KIA or Tema results in massive fees. Our team files entries same-day to ensure released goods before demurrage kicks in.",
-      image: "/src/assets/images/cargo_ship_hero_1778982638392.png",
+      image: "/src/assets/images/port_harbour_cranes_1778988430081.png",
       outcome: [
         "Average clearance: 24-48hrs",
         "Saved GH₵ 15,000+ in one quarter",
@@ -232,7 +232,7 @@ export default function CaseStudies() {
       title: "Diplomatic & AOG Priority",
       sector: "Aviation & Embassies",
       description: "Discreet freight for embassies and time-critical AOG (Aircraft on Ground) parts needing 24/7 response and specialized exemptions.",
-      image: "/src/assets/images/shipping_yard_bg_1778982623151.png",
+      image: "/src/assets/images/warehouse_interior_1778988395381.png",
       outcome: [
         "Zero customs delays on diplomatic cargo",
         "12hr AOG delivery achieved",
@@ -245,7 +245,7 @@ export default function CaseStudies() {
       title: "Bonded Warehousing Efficiency",
       sector: "Storage Solutions",
       description: "Flexible pay-as-you-use warehousing at KIA Cargo Village. Private and bonded options to defer duties and optimize seasonal stock cash flow.",
-      image: "/src/assets/images/cargo_ship_hero_1778982638392.png",
+      image: "/src/assets/images/warehouse_interior_1778988395381.png",
       outcome: [
         "30% cost savings for seasonal stock",
         "99.8% inventory accuracy",
@@ -258,7 +258,7 @@ export default function CaseStudies() {
       title: "Last-Mile Distribution Fleet",
       sector: "Haulage",
       description: "Container and bulk haulage across Ghana and West Africa with real-time GPS tracking and vetted driver protocols for port-to-door reliability.",
-      image: "/src/assets/images/shipping_yard_bg_1778982623151.png",
+      image: "/src/assets/images/heavy_haulage_truck_1778988412569.png",
       outcome: [
         "97% on-time delivery rate",
         "Real-time GPS tracking for all assets",
