@@ -3,126 +3,127 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { Globe, Compass, Box, ShieldAlert, Zap, Truck, ArrowLeft, CheckCircle2, ShieldCheck, Activity, Target } from 'lucide-react';
 import { useEffect } from 'react';
 import Lenis from 'lenis';
+import ShipmentTracker from '../components/ShipmentTracker';
 
 const servicesData: any = {
   'freight-logistics': {
     title: 'Freight Logistics',
     icon: Globe,
-    headline: 'Global Multi-Modal Transit Mastery',
+    headline: 'Global Multi-modal Transit Mastery',
     sub: 'Optimized air, sea, and land networks connecting Ghana to the World.',
     description: 'We orchestrate complex global supply chains with surgical precision. Our freight architecture is designed to reduce friction and maximize transit speed through strategic carrier partnerships and proprietary routing data.',
     capabilities: [
-      'LCL & FCL Ocean Consolidation',
-      'Priority Air Freight via KIA Hub',
-      'Cross-Border Land Transport',
-      'Intermodal Logistics Planning'
+      'LCL/FCL ocean consolidation',
+      'Priority air freight via KIA Hub',
+      'Cross-border land transport',
+      'Intermodal logistics planning'
     ],
     metrics: [
-      { label: 'Avg. UK Transit', value: '16 Days' },
-      { label: 'Time Reduction', value: '22%' },
-      { label: 'Nodes Served', value: '150+' }
+      { label: 'Avg UK transit', value: '16 days' },
+      { label: 'Time reduction', value: '22%' },
+      { label: 'Nodes served', value: '150+' }
     ],
     process: [
-      'Route Optimization Audit',
-      'Carrier Procurement',
-      'Real-time GPS Integration',
-      'Final Mile Execution'
+      'Route optimization audit',
+      'Carrier procurement',
+      'Real-time GPS integration',
+      'Final mile execution'
     ]
   },
   'harbour-clearing': {
     title: 'Harbour Clearing',
     icon: Compass,
-    headline: 'Tema & KIA Port Authority Clearing',
-    sub: 'Professional customs brokerage and rapid released protocols.',
+    headline: 'Tema/KIA Port Authority Clearing',
+    sub: 'Professional customs brokerage and rapid release protocols.',
     description: 'Demurrage and storage fees are the enemies of profit. Our dedicated clearing team operates within the Tema Port and KIA Airport villages to ensure your entries are filed and releasing before the clock starts.',
     capabilities: [
-      'Pre-Arrival Entry Filing',
-      'Duty Calculation & Optimization',
-      'Quarantine & Inspection Liaison',
-      'Bonded Warehouse Release'
+      'Pre-arrival entry filing',
+      'Duty calculation optimization',
+      'Quarantine inspection liaison',
+      'Bonded warehouse release'
     ],
     metrics: [
-      { label: 'Avg. Release', value: '24-48hrs' },
-      { label: 'Compliance Rate', value: '100%' },
-      { label: 'Fees Saved', value: 'GH₵ 15k+' }
+      { label: 'Avg release', value: '24 48hrs' },
+      { label: 'Compliance rate', value: '100%' },
+      { label: 'Fees saved', value: 'GH₵ 15k+' }
     ],
     process: [
-      'Document Pre-Check',
-      'Tax Compliance Audit',
-      'Physical Inspection Support',
-      'Post-Clearance Audit'
+      'Document pre-check',
+      'Tax compliance audit',
+      'Physical inspection support',
+      'Post-clearance audit'
     ]
   },
   'warehousing': {
     title: 'Warehousing',
     icon: Box,
     headline: 'KIA Cargo Village Infrastructure',
-    sub: 'Secure, bonded, and inventory-managed storage solutions.',
+    sub: 'Secure bonded and inventory managed storage solutions.',
     description: 'Strategic storage in proximity to major transit hubs. Our facilities at KIA Cargo Village provide the flexibility SMEs need for seasonal stock and bonded duty deferment.',
     capabilities: [
-      'Bonded Duty Deferment',
-      'WMS Inventory Tracking',
-      'Pick, Pack & Dispatch Services',
-      'Climate-Controlled Zones'
+      'Bonded duty deferment',
+      'WMS inventory tracking',
+      'Pick-pack dispatch services',
+      'Climate-controlled zones'
     ],
     metrics: [
-      { label: 'Accuracy Rate', value: '99.8%' },
-      { label: 'Ops Availability', value: '24/7' },
-      { label: 'Hub Proximity', value: '200m' }
+      { label: 'Accuracy rate', value: '99.8%' },
+      { label: 'Ops availability', value: '24 7' },
+      { label: 'Hub proximity', value: '200m' }
     ],
     process: [
-      'Intake & Inspection',
-      'RFID Tagging',
-      'Strategic Slotting',
-      'Automated Dispatch'
+      'Intake inspection',
+      'RFID tagging',
+      'Strategic slotting',
+      'Automated dispatch'
     ]
   },
   'dangerous-goods': {
     title: 'Dangerous Goods',
     icon: ShieldAlert,
     headline: 'Certified Hazardous Material Protocol',
-    sub: 'IMO & IATA regulated transport for perilous cargo.',
+    sub: 'IMO/IATA regulated transport for perilous cargo.',
     description: 'Dangerous goods demand absolute authority. We are certified to handle IMO Class 1-9 materials, ensuring that lithium batteries, chemicals, and industrial compounds move safely across borders.',
     capabilities: [
-      'DG Classification & Labeling',
-      'MSDS Documentation Prep',
-      'IATA Category Handling',
-      'Emergency Response Ready'
+      'DG classification & labeling',
+      'MSDS documentation prep',
+      'IATA category handling',
+      'Emergency response ready'
     ],
     metrics: [
-      { label: 'Clearance Rate', value: '100%' },
-      { label: 'Safety Incidents', value: 'Zero' },
+      { label: 'Clearance rate', value: '100%' },
+      { label: 'Safety incidents', value: 'Zero' },
       { label: 'Certification', value: 'Full IMO' }
     ],
     process: [
-      'Risk Classification',
-      'Specialized Packaging',
-      'Permit Granting',
-      'Escorted Transport'
+      'Risk classification',
+      'Specialized packaging',
+      'Permit granting',
+      'Escorted transport'
     ]
   },
   'specialized-cargo': {
     title: 'Specialized Cargo',
     icon: Zap,
     headline: 'Diplomatic & Aviation Priority Ops',
-    sub: 'Sensitive handling for embassies and Aircraft on Ground (AOG) support.',
+    sub: 'Sensitive handling for embassies and aircraft on ground (AOG) support.',
     description: 'When failure is not an option. We provide discreet handling for diplomatic materials and rapid response for aviation engine parts (AOG), maintaining strict chain-of-custody protocols.',
     capabilities: [
-      'Diplomatic Note Handling',
-      'AOG 12hr Rapid Response',
-      'Embassy Logistics Protocol',
-      'Secure Chain-of-Custody'
+      'Diplomatic note handling',
+      'AOG 12hr rapid response',
+      'Embassy logistics protocol',
+      'Secure chain-of-custody'
     ],
     metrics: [
-      { label: 'AOG Response', value: '12hrs' },
-      { label: 'Security Level', value: 'Verified' },
-      { label: 'Customs Delay', value: 'Zero' }
+      { label: 'AOG response', value: '12hrs' },
+      { label: 'Security level', value: 'Verified' },
+      { label: 'Customs delay', value: 'Zero' }
     ],
     process: [
-      'Priority Verification',
-      'Secure Line-of-Sight',
-      'Exemption Processing',
-      'Hand-Off Validation'
+      'Priority verification',
+      'Secure line-of-sight',
+      'Exemption processing',
+      'Hand-off validation'
     ]
   },
   'haulage': {
@@ -132,21 +133,21 @@ const servicesData: any = {
     sub: 'Container and bulk trucking with real-time GPS tracking.',
     description: 'The final link in the supply chain. Our vetted fleet and trained drivers ensure that your cargo moves from Tema Harbor to its final destination with predictable timing and safety.',
     capabilities: [
-      'FCL / LCL Road Haulage',
-      'Heavy-Lift Industrial Transport',
-      'GPS Fleet Tracking',
-      'Accra-Kumasi Priority Hubs'
+      'FCL/LCL road haulage',
+      'Heavy-lift industrial transport',
+      'GPS fleet tracking',
+      'Accra/Kumasi priority hubs'
     ],
     metrics: [
-      { label: 'On-Time Rate', value: '97%' },
-      { label: 'Fleet Age', value: '< 5yrs' },
-      { label: 'Region Coverage', value: 'All GH' }
+      { label: 'On-time rate', value: '97%' },
+      { label: 'Fleet age', value: '< 5yrs' },
+      { label: 'Region coverage', value: 'All GH' }
     ],
     process: [
-      'Route Analysis',
-      'Unit Matching',
-      'Sealing & Security',
-      'Digital POD Receipt'
+      'Route analysis',
+      'Unit matching',
+      'Sealing security',
+      'Digital POD receipt'
     ]
   }
 };
@@ -171,21 +172,25 @@ export default function ServiceDetail() {
   const Icon = service.icon;
 
   return (
-    <div className="bg-ocean-950 min-h-screen relative pt-32 pb-40 px-6 selection:bg-white selection:text-black">
-      <div className="grain" />
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="bg-ocean-950 min-h-screen relative pt-32 pb-40 px-6 selection:bg-white selection:text-black"
+    >
       
       <div className="max-w-7xl mx-auto">
-        <Link to="/#services" className="inline-flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-accent group mb-20">
+        <Link to="/#services" className="inline-flex items-center gap-3 font-mono text-[10px] tracking-widest text-accent group mb-20 px-6 py-3 border border-accent/20 rounded-full hover:bg-accent/5 transition-all w-fit">
           <ArrowLeft size={14} className="group-hover:-translate-x-2 transition-transform" />
-          / Return to Fleet Ops
+          Return to Fleet Ops
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
           <div className="space-y-12">
             <div className="space-y-6">
-              <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.5em] text-accent">
+              <div className="flex items-center gap-4 font-mono text-[10px] tracking-[0.5em] text-accent">
                 <Icon size={16} />
-                Protocol_{service.title.toUpperCase().replace(' ', '_')}
+                Protocol {service.title}
               </div>
               <h1 className="text-6xl md:text-8xl font-display font-black uppercase tracking-[-0.05em] leading-[0.8] text-glow-red">
                 {service.title.split(' ')[0]}<br />
@@ -194,7 +199,7 @@ export default function ServiceDetail() {
               <p className="text-xl md:text-2xl font-display font-light uppercase tracking-tight text-white leading-tight">
                 {service.headline}
               </p>
-              <p className="font-mono text-xs md:text-sm uppercase tracking-widest leading-loose opacity-60 max-w-xl">
+              <p className="font-mono text-xs md:text-sm tracking-widest leading-loose opacity-60 max-w-xl">
                 {service.description}
               </p>
             </div>
@@ -203,18 +208,24 @@ export default function ServiceDetail() {
               {service.metrics.map((m: any, i: number) => (
                 <div key={i} className="space-y-2">
                   <div className="text-2xl font-display font-bold text-white">{m.value}</div>
-                  <div className="font-mono text-[8px] uppercase tracking-widest opacity-40">{m.label}</div>
+                  <div className="font-mono text-[8px] tracking-widest opacity-40">{m.label}</div>
                 </div>
               ))}
             </div>
 
+            {(slug === 'freight-logistics' || slug === 'haulage') && (
+              <div className="py-10 border-b border-white/5">
+                <ShipmentTracker type={slug === 'freight-logistics' ? 'freight' : 'haulage'} />
+              </div>
+            )}
+
             <div className="space-y-8">
-               <h3 className="font-mono text-[10px] uppercase tracking-[0.4em] text-accent font-bold">Operational Capabilities //</h3>
+               <h3 className="font-mono text-[10px] tracking-[0.4em] text-accent font-bold">Operational Capabilities //</h3>
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {service.capabilities.map((cap: string, i: number) => (
                     <div key={i} className="flex items-center gap-3 p-4 border border-white/5 bg-ocean-900 group hover:border-accent/40 transition-colors">
                       <ShieldCheck size={14} className="text-accent opacity-40 group-hover:opacity-100" />
-                      <span className="font-mono text-[10px] uppercase tracking-widest opacity-60 group-hover:opacity-100">{cap}</span>
+                      <span className="font-mono text-[10px] tracking-widest opacity-60 group-hover:opacity-100">{cap}</span>
                     </div>
                   ))}
                </div>
@@ -224,7 +235,7 @@ export default function ServiceDetail() {
           <div className="space-y-20 lg:sticky lg:top-32">
             <div className="bg-ocean-900 border border-white/10 p-10 space-y-10 relative overflow-hidden">
                <div className="absolute top-0 right-0 w-24 h-24 bg-accent/5 blur-3xl" />
-               <h3 className="font-mono text-[10px] uppercase tracking-[0.4em] text-white">Execution Protocol //</h3>
+               <h3 className="font-mono text-[10px] tracking-[0.4em] text-white">Execution Protocol //</h3>
                <div className="space-y-6">
                   {service.process.map((step: string, i: number) => (
                     <div key={i} className="flex gap-6 items-start relative">
@@ -235,15 +246,15 @@ export default function ServiceDetail() {
                           {i < service.process.length - 1 && <div className="w-[1px] h-12 bg-white/10" />}
                        </div>
                        <div className="pt-1">
-                          <div className="font-mono text-[10px] uppercase tracking-widest text-white mb-1">{step}</div>
-                          <div className="font-mono text-[8px] uppercase tracking-widest opacity-40">System_Check_Verified</div>
+                          <div className="font-mono text-[10px] tracking-widest text-white mb-1">{step}</div>
+                          <div className="font-mono text-[8px] tracking-widest opacity-40">System check verified</div>
                        </div>
                     </div>
                   ))}
                </div>
 
-               <div className="pt-10">
-                  <a href="/#contact" className="w-full flex items-center justify-center py-6 bg-accent text-white font-mono font-bold uppercase tracking-[0.3em] text-[10px] shadow-2xl shadow-accent/20 hover:bg-white hover:text-black transition-all">
+                <div className="pt-10">
+                  <a href="/#contact" className="w-full flex items-center justify-center py-6 bg-accent text-white font-mono font-bold tracking-[0.3em] text-[10px] shadow-2xl shadow-accent/20 hover:bg-white hover:text-black transition-all rounded-full">
                     Initiate Case Quote
                   </a>
                </div>
@@ -252,13 +263,13 @@ export default function ServiceDetail() {
             <div className="flex items-center gap-6 p-8 border border-white/5 font-mono">
                <Activity className="text-accent animate-pulse" size={24} />
                <div>
-                  <div className="text-[10px] uppercase tracking-widest text-white">Security Integrity: High</div>
-                  <div className="text-[8px] uppercase tracking-[0.3em] opacity-40 italic">256-bit protocol encryption active</div>
+                  <div className="text-[10px] tracking-widest text-white">Security integrity: High</div>
+                  <div className="text-[8px] tracking-[0.3em] opacity-40 italic">256 bit protocol encryption active</div>
                </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
