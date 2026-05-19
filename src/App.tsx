@@ -143,7 +143,7 @@ const Navbar = () => {
 };
 
 const Hero = () => {
-  const container = useRef(null);
+  const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: container,
     offset: ["start start", "end start"]
@@ -155,8 +155,115 @@ const Hero = () => {
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0.6, 0]);
 
+  const colorIndexRef = useRef(0);
+
+  const strikeLightning = (e: React.MouseEvent) => {
+    if (!container.current) return;
+    
+    const rect = container.current.getBoundingClientRect();
+    const targetX = e.clientX - rect.left;
+    const targetY = e.clientY - rect.top;
+
+    // Trigger 4 strikes in a rapid sequence
+    for (let s = 0; s < 4; s++) {
+      setTimeout(() => {
+        if (!container.current) return;
+
+        // Lightning colors: Red, Blue, White, Grey
+        const colors = ['#e11d48', '#3b82f6', '#ffffff', '#94a3b8'];
+        const color = colors[colorIndexRef.current];
+        colorIndexRef.current = (colorIndexRef.current + 1) % colors.length;
+        
+        // Randomize the branch position slightly for each strike
+        const offsetX = (Math.random() - 0.5) * 100;
+
+        // Create lightning SVG
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("viewBox", "0 0 100 1000");
+        svg.style.position = "absolute";
+        svg.style.top = "0";
+        svg.style.left = `${targetX + offsetX - 50}px`;
+        svg.style.width = "100px";
+        svg.style.height = `${targetY}px`;
+        svg.style.pointerEvents = "none";
+        svg.style.zIndex = "5";
+        svg.style.filter = `drop-shadow(0 0 15px ${color})`;
+        
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        let d = "M 50 0";
+        let curX = 50;
+        const segments = 12;
+        for (let i = 1; i <= segments; i++) {
+            curX += (Math.random() - 0.5) * 60;
+            d += ` L ${curX} ${(i / segments) * 1000}`;
+        }
+        
+        path.setAttribute("d", d);
+        path.setAttribute("stroke", color);
+        path.setAttribute("stroke-width", "3");
+        path.setAttribute("fill", "none");
+        path.style.opacity = "0";
+        
+        svg.appendChild(path);
+        container.current.appendChild(svg);
+
+        // Global background flash
+        gsap.to(container.current, {
+          backgroundColor: `${color}22`,
+          duration: 0.05,
+          yoyo: true,
+          repeat: 3,
+          onComplete: () => {
+            if (container.current) gsap.to(container.current, { backgroundColor: 'transparent', duration: 0.5 });
+          }
+        });
+
+        // Bolt flash animation with afterglow
+        const tl = gsap.timeline({
+          onComplete: () => {
+            svg.remove();
+          }
+        });
+
+        // Phase 1: High-intensity strike
+        tl.to(path, {
+          opacity: 1,
+          duration: 0.04,
+          repeat: 7,
+          yoyo: true,
+          ease: "power2.inOut"
+        });
+
+        // Phase 2: Gradual fading afterglow with shimmering
+        tl.to(path, {
+          opacity: 0.4,
+          duration: 0.2,
+          ease: "power4.out"
+        });
+
+        tl.to(path, {
+          opacity: 0,
+          x: () => (Math.random() - 0.5) * 5, // Subtle jitter
+          duration: 1.5,
+          ease: "rough({ template: power1.out, strength: 2, points: 20, taper: 'out', randomize: true })"
+        });
+
+        tl.to(svg, {
+          scaleX: 1.1,
+          opacity: 0,
+          duration: 1.2,
+          ease: "power2.out"
+        }, "-=1.5");
+      }, s * 80); // Stagger each of the 4 strikes
+    }
+  };
+
   return (
-    <section ref={container} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+    <section 
+      ref={container} 
+      onMouseDown={strikeLightning}
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden cursor-crosshair select-none"
+    >
       {/* Background Layers */}
       <motion.div 
         style={{ y, opacity, scale }}
